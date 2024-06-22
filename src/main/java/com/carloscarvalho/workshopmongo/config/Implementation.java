@@ -36,10 +36,14 @@ public class Implementation implements CommandLineRunner {
 
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
-		Post post1 = new Post(null, sdf.parse("21/06/2024"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+		Post post1 = new Post(null, sdf.parse("21/06/2024"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!",
+				new AuthorDTO(maria));
 		Post post2 = new Post(null, sdf.parse("19/06/2024"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 
 		postRepository.saveAll(Arrays.asList(post1, post2));
+
+		maria.getPosts().addAll(Arrays.asList(post1, post2));
+		userRepository.save(maria);
 	}
 
 }
